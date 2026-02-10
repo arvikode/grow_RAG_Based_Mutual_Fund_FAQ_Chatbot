@@ -48,6 +48,7 @@ config/secrets.py
 
 # Vector Database
 chroma_db/
+faiss_index/
 *.db
 *.sqlite
 

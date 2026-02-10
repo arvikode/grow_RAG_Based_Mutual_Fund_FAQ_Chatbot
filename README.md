@@ -119,7 +119,7 @@ mutual-fund-rag-chatbot/
 │   ├── pdfs/                           # KIM, SID PDFs
 │   └── html/                           # Scraped web pages
 │
-├── chroma_db/                          # Vector database (gitignored)
+├── faiss_index/                        # Vector database (gitignored)
 │
 ├── tests/                              # Test cases
 │   └── sample_qa.md                    # Sample Q&A for validation
@@ -140,7 +140,7 @@ mutual-fund-rag-chatbot/
 |-----------|-----------|---------|
 | **Language** | Python 3.9+ | Core development |
 | **RAG Framework** | LangChain | Document processing & RAG pipeline |
-| **Vector DB** | ChromaDB | Store document embeddings |
+| **Vector DB** | FAISS | Store document embeddings (Python 3.14 compatible) |
 | **Embeddings** | sentence-transformers | Convert text to vectors (free) |
 | **LLM** | OpenAI GPT-3.5-turbo | Generate answers |
 | **UI** | Streamlit | Web interface |
@@ -149,20 +149,20 @@ mutual-fund-rag-chatbot/
 
 ---
 
-## 📊 Data Sources (27 URLs)
+## 📊 Data Sources (21 Unique URLs)
 
-### HDFC AMC Sources (20)
-- 5 scheme pages (NAV, riskometer, benchmark)
-- 5 KIM PDFs (expense ratio, exit load, min SIP)
-- 5 SID PDFs (comprehensive scheme facts)
-- 5 factsheet references
+### HDFC AMC Sources (15)
+- 5 HDFC scheme detail pages (NAV, riskometer, benchmark)
+- 5 HDFC KIM PDFs (expense ratio, exit load, min SIP)
+- 5 HDFC SID PDFs (comprehensive scheme facts)
+- (Factsheets accessed via scheme pages)
 
-### Regulatory Sources (7)
+### Regulatory Sources (6)
 - **SEBI**: Investor FAQs, exit load guide
-- **AMFI**: Knowledge center, investor education, CAS guide
+- **AMFI**: Official website, Knowledge Center
 - **NISM**: Mutual fund FAQs PDF
 
-All sources are official and publicly accessible.
+All sources are 100% official and validated.
 
 ---
 
@@ -170,28 +170,31 @@ All sources are official and publicly accessible.
 
 ### ✅ Phase 1: Data Collection & Validation (Complete)
 - [x] Select AMC and schemes
-- [x] Collect 27 official URLs
+- [x] Collect 21 official URLs (deduplicated)
 - [x] Validate URL accessibility
 - [x] Fix stale URLs (HDFC Top 100 → Large Cap)
 - [x] Document sources in CSV
 
 **Deliverables**:
-- `official-urls-corrected.csv`
+- `official-urls.csv` (Verified & Cleaned)
 - `phase1-url-validation-report.md`
+- `tests/sample_qa.md` (Sample Q&A)
+- `disclaimer.txt` (UI Snippet)
 
 ---
 
-### 🔄 Phase 2: RAG Pipeline (In Progress)
-- [ ] Load documents from URLs
-- [ ] Split into chunks (500 words)
-- [ ] Create embeddings
-- [ ] Store in ChromaDB
-- [ ] Build retrieval function
-- [ ] Test with sample questions
+### ✅ Phase 2: RAG Pipeline (Complete)
+- [x] Load documents from URLs
+- [x] Split into chunks (1000 chars)
+- [x] Create embeddings
+- [x] Store in FAISS (switched from ChromaDB for Python 3.14 compatibility)
+- [x] Build retrieval function
+- [x] Test with sample questions
 
 **Deliverables**:
-- Working retrieval system
-- `src/data_loader.py`, `src/embeddings.py`, `src/vector_store.py`
+- Working retrieval system (716 document chunks)
+- `src/data_loader.py`, `src/embeddings.py`, `src/vector_store.py`, `src/retrieval.py`
+- Note: 5 SID PDFs returned 403 errors, but sufficient data from other sources
 
 ---
 
@@ -311,7 +314,7 @@ Learn more: [SEBI Investor Education](https://investor.sebi.gov.in/)
 | Date | Phase | Status |
 |------|-------|--------|
 | Feb 9 | Phase 1: Data Collection | ✅ Complete |
-| Feb 10 | Phase 2: RAG Pipeline | 🔄 In Progress |
+| Feb 10 | Phase 2: RAG Pipeline | ✅ Complete |
 | Feb 11 | Phases 3-5: LLM + UI | ⏳ Planned |
 | Feb 12 | Phase 6: Testing & Submission | ⏳ Planned |
 
@@ -381,5 +384,5 @@ Educational project - not for commercial use.
 
 ---
 
-**Last Updated**: February 9, 2026  
-**Status**: Phase 1 Complete, Phase 2 In Progress
+**Last Updated**: February 10, 2026  
+**Status**: Phase 2 Complete, Phase 3 In Progress

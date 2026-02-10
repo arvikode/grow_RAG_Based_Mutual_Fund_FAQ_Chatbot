@@ -1,0 +1,5 @@
+**Disclaimer:**
+This chatbot provides factual information only (e.g., scheme details, expense ratios, exit loads) sourced from official documents (KIM/SID/AMFI). 
+It does **NOT** provide investment advice, buy/sell recommendations, or future performance predictions. 
+Mutual Fund investments are subject to market risks, read all scheme related documents carefully. 
+For financial advice, please consult a SEBI-registered investment advisor.
