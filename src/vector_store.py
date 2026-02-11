@@ -2,7 +2,7 @@ import os
 import pickle
 from langchain_community.vectorstores import FAISS
 from langchain_core.documents import Document
-from embeddings import get_embedding_function
+from .embeddings import get_embedding_function
 
 FAISS_PATH = "faiss_index"
 

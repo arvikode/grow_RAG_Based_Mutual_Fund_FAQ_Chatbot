@@ -24,7 +24,18 @@ wheels/
 venv/
 env/
 ENV/
-.venv
+
+# Environment Variables
+.env
+.env.local
+
+# Streamlit
+.streamlit/secrets.toml
+
+# Vector Database
+faiss_index/
+chromadb/
+chroma_db/
 
 # IDE
 .vscode/
@@ -32,39 +43,20 @@ ENV/
 *.swp
 *.swo
 *~
-.DS_Store
-
-# Jupyter Notebook
-.ipynb_checkpoints
-
-# Environment variables
-.env
-.env.local
-
-# API Keys (important for security!)
-*.key
-secrets.json
-config/secrets.py
-
-# Vector Database
-chroma_db/
-faiss_index/
-*.db
-*.sqlite
-
-# Logs
-*.log
-logs/
-
-# Model cache
-.cache/
-models/
-
-# Temporary files
-tmp/
-temp/
-*.tmp
 
 # OS
 .DS_Store
 Thumbs.db
+
+# Jupyter Notebooks
+.ipynb_checkpoints/
+*.ipynb
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Data (optional - uncomment if you don't want to commit downloaded data)
+# data/pdfs/
+# data/html/

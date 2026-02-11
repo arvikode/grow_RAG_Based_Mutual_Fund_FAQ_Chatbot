@@ -1,4 +1,4 @@
-from vector_store import VectorStore
+from .vector_store import VectorStore
 
 class Retriever:
     def __init__(self, k=3):
