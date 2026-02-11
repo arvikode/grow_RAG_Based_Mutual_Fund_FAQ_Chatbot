@@ -1,15 +1,15 @@
 """
-Streamlit app entry point for deployment.
-This file is required by Streamlit Cloud in the root directory.
+Streamlit app entry point for Streamlit Cloud deployment.
+This file must be in the root directory as streamlit_app.py.
 """
 import sys
 import os
 
-# Add src directory to path
+# Add src directory to Python path
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'src'))
 
-# Import and run the main app
-from app import main
+# Import the main app module
+import app
 
-if __name__ == "__main__":
-    main()
+# Streamlit will automatically run the app.py module
+# No need to call main() explicitly - Streamlit handles this
