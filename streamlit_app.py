@@ -12,4 +12,6 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'src'))
 import app
 
 # Streamlit will automatically run the app.py module
-# No need to call main() explicitly - Streamlit handles this
+# However, we need to call the main function explicitly
+if __name__ == "__main__":
+    app.main()

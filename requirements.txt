@@ -1,14 +1,12 @@
 langchain
 langchain-community
 faiss-cpu
-chromadb
 sentence-transformers
 beautifulsoup4
 pypdf
 requests
 python-dotenv
 tiktoken
-pydantic-settings
 google-generativeai
 openai
 streamlit
