@@ -22,7 +22,7 @@ class LLMProvider:
 class GeminiProvider(LLMProvider):
     """Google Gemini API provider."""
     
-    def __init__(self, api_key: str, model: str = "gemini-1.5-flash"):
+    def __init__(self, api_key: str, model: str = "gemini-pro"):
         """
         Initialize Gemini provider.
         
@@ -67,7 +67,38 @@ class GeminiProvider(LLMProvider):
             
             return response.text
         except Exception as e:
-            raise RuntimeError(f"Gemini API error: {str(e)}")
+            error_msg = str(e)
+            
+            # Provide user-friendly error messages
+            if "429" in error_msg or "quota" in error_msg.lower():
+                raise RuntimeError(
+                    "⚠️ API QUOTA EXCEEDED\n"
+                    "You've reached the Gemini free tier limit.\n"
+                    "Solutions:\n"
+                    "  1. Wait a few minutes and try again\n"
+                    "  2. Upgrade at https://ai.google.dev/pricing\n"
+                    "  3. Use a different API key"
+                )
+            elif "rate limit" in error_msg.lower():
+                raise RuntimeError(
+                    "⚠️ RATE LIMIT EXCEEDED\n"
+                    "Too many requests in a short time.\n"
+                    "Please wait 30-60 seconds and try again."
+                )
+            elif "404" in error_msg or "not found" in error_msg.lower():
+                raise RuntimeError(
+                    f"⚠️ MODEL NOT FOUND\n"
+                    f"The model '{self.model._model_name}' is not available.\n"
+                    f"Try changing GEMINI_MODEL in .env to 'gemini-pro'"
+                )
+            elif "invalid api key" in error_msg.lower() or "401" in error_msg:
+                raise RuntimeError(
+                    "⚠️ INVALID API KEY\n"
+                    "Please check your GEMINI_API_KEY in .env file.\n"
+                    "Get a key at https://ai.google.dev/"
+                )
+            else:
+                raise RuntimeError(f"Gemini API error: {error_msg}")
 
 
 class GrokProvider(LLMProvider):
@@ -118,7 +149,27 @@ class GrokProvider(LLMProvider):
             
             return response.choices[0].message.content
         except Exception as e:
-            raise RuntimeError(f"Grok API error: {str(e)}")
+            error_msg = str(e)
+            
+            # Provide user-friendly error messages
+            if "429" in error_msg or "quota" in error_msg.lower():
+                raise RuntimeError(
+                    "⚠️ API QUOTA EXCEEDED\n"
+                    "You've reached your Grok API limit.\n"
+                    "Check your plan at https://x.ai"
+                )
+            elif "rate limit" in error_msg.lower():
+                raise RuntimeError(
+                    "⚠️ RATE LIMIT EXCEEDED\n"
+                    "Too many requests. Please wait and try again."
+                )
+            elif "invalid api key" in error_msg.lower() or "401" in error_msg:
+                raise RuntimeError(
+                    "⚠️ INVALID API KEY\n"
+                    "Please check your GROK_API_KEY in .env file."
+                )
+            else:
+                raise RuntimeError(f"Grok API error: {error_msg}")
 
 
 class LLM:
@@ -173,7 +224,7 @@ class LLM:
             raise ValueError(f"Unknown provider: {self.provider_name}")
         
         # Get default settings from env
-        self.temperature = float(os.getenv("TEMPERATURE", "0.1"))
+        self.temperature = float(os.getenv("TEMPERATURE", "0.3"))
         self.max_tokens = int(os.getenv("MAX_TOKENS", "1000"))
     
     def generate(
@@ -217,32 +268,30 @@ class LLM:
         """
         timestamp = datetime.now().strftime("%B %d, %Y")
         
-        prompt = f"""You are a factual mutual fund information assistant. Your role is to provide accurate, fact-based answers ONLY using the information provided in the context below.
-
-IMPORTANT RULES:
-1. Answer ONLY based on the provided context
-2. If the context doesn't contain the answer, say "I don't have enough information to answer this question."
-3. ALWAYS cite sources using [Source N] format
-4. Do NOT provide investment advice or recommendations
-5. Be concise and factual
-6. Include relevant numbers, percentages, and specific details from the context
-
-DISCLAIMER: This is for informational purposes only and does not constitute investment advice.
+        # Format source URLs for the prompt
+        source_links = "\n".join([f"[Source {i+1}]: {src['url']}" for i, src in enumerate(sources)])
+        
+        prompt = f"""You are a helpful mutual fund information assistant. Answer the user's question using the information from the context below.
 
 CONTEXT:
 {context}
 
+AVAILABLE SOURCES:
+{source_links}
+
 QUESTION: {question}
 
-Please provide a factual answer with source citations. Format your response as:
+INSTRUCTIONS:
+1. Search the context carefully for the specific information requested
+2. If you find the exact answer (like a specific percentage, amount, or date), provide it clearly in 2-3 sentences
+3. Include citations like [Source 1] or [Source 2] for the information you use
+4. If the context mentions the topic but doesn't have the specific value (e.g., it says "Click here" or "TER" without the actual number), respond with:
+   "I found information about [topic] in the official documents, but the specific value isn't shown in the text I have access to. You can find the current [specific data] at: [provide the most relevant source URL]"
+5. If the information isn't in the context at all, say: "I don't have information about that in my current sources."
+6. Do NOT provide investment advice or recommendations
+7. Be helpful and direct
 
-Answer: [Your factual answer with [Source N] citations]
-
-Sources:
-[List the sources you referenced]
-
-Last updated: {timestamp}
-"""
+Answer the question now:"""
         return prompt
 
 

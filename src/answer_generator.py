@@ -4,8 +4,8 @@ Provides end-to-end question answering with source citations.
 """
 from typing import Dict, List, Tuple, Optional
 from datetime import datetime
-from .retrieval import Retriever
-from .llm import LLM
+from retrieval import Retriever
+from llm import LLM
 
 
 class AnswerGenerator:

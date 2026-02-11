@@ -11,3 +11,4 @@ tiktoken
 pydantic-settings
 google-generativeai
 openai
+streamlit

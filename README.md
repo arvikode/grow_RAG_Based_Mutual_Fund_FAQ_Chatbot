@@ -223,16 +223,16 @@ All sources are 100% official and validated.
 
 ---
 
-### ⏳ Phase 5: UI Development (Planned)
-- [ ] Build Streamlit interface
-- [ ] Add welcome message
-- [ ] Show 3 example questions
-- [ ] Display answer + citation
-- [ ] Add disclaimer footer
+### ✅ Phase 5: UI Development (Complete)
+- [x] Build Streamlit interface
+- [x] Add welcome message
+- [x] Show 3 example questions
+- [x] Display answer + citation
+- [x] Add disclaimer footer
 
 **Deliverables**:
 - `src/app.py`
-- Working web interface
+- Working web interface on http://localhost:8503
 
 ---
 
