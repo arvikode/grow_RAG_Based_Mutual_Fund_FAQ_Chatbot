@@ -227,6 +227,9 @@ Would you like to know any **factual information** about our covered schemes?"""
             - is_advice: True if advice-seeking, False if factual
             - response_dict: Refusal message if advice, None if factual
         """
+        if self.is_greeting(question):
+            return True, self.get_greeting_response(question)
+            
         if self.is_advice_seeking(question):
             return True, self.get_refusal_message(question)
         return False, None

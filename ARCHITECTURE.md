@@ -137,10 +137,11 @@ The Mutual Fund RAG Chatbot is built using a Retrieval-Augmented Generation (RAG
 
 **Purpose**: Store and retrieve document embeddings
 
-**Database**: ChromaDB
+**Database**: FAISS (Facebook AI Similarity Search)
 - **Type**: In-memory vector database
-- **Persistence**: Local disk storage
+- **Persistence**: Local disk storage (`faiss_index` directory)
 - **Similarity**: Cosine similarity
+- **Path Handling**: Absolute path resolution to ensure access from any working directory
 
 **Schema**:
 ```python

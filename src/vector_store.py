@@ -4,7 +4,9 @@ from langchain_community.vectorstores import FAISS
 from langchain_core.documents import Document
 from embeddings import get_embedding_function
 
-FAISS_PATH = "faiss_index"
+# Get the project root directory (parent of src)
+PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+FAISS_PATH = os.path.join(PROJECT_ROOT, "faiss_index")
 
 class VectorStore:
     def __init__(self):

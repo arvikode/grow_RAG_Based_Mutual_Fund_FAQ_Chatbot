@@ -321,7 +321,26 @@ Learn more: [SEBI Investor Education](https://investor.sebi.gov.in/)
 | Feb 11 | Phase 6: Testing & Documentation | ✅ Complete |
 | Feb 12 | Final Submission | 🎯 Ready |
 
+| Feb 12 | Final Submission | 🎯 Ready |
+
 **Deadline**: February 12, 2026, 11:59 PM IST
+
+## 🔧 Troubleshooting
+
+### Common Issues
+
+1. **API Quota Exceeded**: 
+   - If you see "429" or "Quota Exceeded" errors, it means the Gemini free tier limit has been reached.
+   - **Solution**: Wait a few minutes or use a different API key.
+
+2. **Database Not Found**:
+   - If you see retrieval errors, ensure `faiss_index` folder exists in the project root.
+   - The system now automatically finds the index regardless of where you run the script from.
+
+3. **"I don't have enough information..."**:
+   - This usually means the retrieval failed to find relevant documents. 
+   - Check if your query is about HDFC mutual funds.
+   - Verify `faiss_index` is populated.
 
 ---
 
