@@ -152,7 +152,10 @@ def display_sidebar():
         st.markdown("""
         - [SEBI Investor Education](https://investor.sebi.gov.in/)
         - [AMFI Investor Corner](https://www.amfiindia.com/investor-corner)
-        - [NISM FAQs](https://www.nism.ac.in/)
+        - [NISM FAQs](https://www.nism.ac.in/wp-content/uploads/2021/02/FAQsOnMfs-3-1.pdf)
+        - [HDFC Total Expense Ratio](https://www.hdfcfund.com/statutory-disclosure/total-expense-ratio-of-mutual-fund-schemes/reports)
+        - [HDFC Monthly Portfolios](https://www.hdfcfund.com/statutory-disclosure/portfolio/monthly-portfolio)
+        - [SEBI Exit Load Guide](https://investor.sebi.gov.in/exit_load.html)
         """)
 
 
