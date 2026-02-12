@@ -157,6 +157,15 @@ def display_sidebar():
         - [HDFC Monthly Portfolios](https://www.hdfcfund.com/statutory-disclosure/portfolio/monthly-portfolio)
         - [SEBI Exit Load Guide](https://investor.sebi.gov.in/exit_load.html)
         """)
+        
+        st.header("🔗 Official Scheme Pages")
+        st.markdown("""
+        - [HDFC Flexi Cap Fund](https://www.hdfcfund.com/explore/mutual-funds/hdfc-flexi-cap-fund/direct)
+        - [HDFC Large Cap Fund](https://www.hdfcfund.com/explore/mutual-funds/hdfc-large-cap-fund/direct)
+        - [HDFC ELSS Tax Saver](https://www.hdfcfund.com/explore/mutual-funds/hdfc-elss-tax-saver/direct)
+        - [HDFC Small Cap Fund](https://www.hdfcfund.com/explore/mutual-funds/hdfc-small-cap-fund/direct)
+        - [HDFC Balanced Advantage Fund](https://www.hdfcfund.com/explore/mutual-funds/hdfc-balanced-advantage-fund/direct)
+        """)
 
 
 def display_chat_message(role, content, sources=None, is_refusal=False):
