@@ -379,9 +379,14 @@ cp .env.example .env
 ```
 
 ### Run the Chatbot
+
+**Option 1: Command Line**
 ```bash
 streamlit run src/app.py
 ```
+
+**Option 2: Windows Batch File**
+Double-click `start_server.bat` in the project folder.
 
 ---
 
