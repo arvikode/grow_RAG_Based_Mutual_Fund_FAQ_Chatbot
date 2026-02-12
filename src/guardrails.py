@@ -242,7 +242,7 @@ Would you like to know any **factual information** about our covered schemes?"""
             List of example questions
         """
         return [
-            "What is the expense ratio of HDFC Flexi Cap Fund?",
+            "What is the exit load of HDFC Flexi Cap Fund?",
             "What is the exit load for HDFC Large Cap Fund?",
             "What is the minimum SIP amount for HDFC ELSS Tax Saver?",
             "What is the lock-in period for HDFC ELSS Tax Saver?",

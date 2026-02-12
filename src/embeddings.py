@@ -4,5 +4,5 @@ def get_embedding_function():
     """Return the singleton embedding function."""
     # Using a lightweight, high-performance model suitable for CPU usage
     # all-MiniLM-L6-v2 is a standard choice for tasks like this
-    embeddings = SentenceTransformerEmbeddings(model_name="all-MiniLM-L6-v2")
+    embeddings = SentenceTransformerEmbeddings(model_name="all-MiniLM-L6-v2", model_kwargs={'device': 'cpu'})
     return embeddings

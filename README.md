@@ -262,6 +262,7 @@ All sources are 100% official and validated.
 - ✅ **Facts only** - No investment advice
 - ✅ **Transparency** - Always cite sources, keep answers ≤3 sentences
 
+
 ### Refusal Criteria
 The chatbot **must refuse** to answer:
 - Investment recommendations
@@ -269,6 +270,14 @@ The chatbot **must refuse** to answer:
 - Fund comparisons ("Which is better?")
 - Personalized financial planning
 - Return predictions
+
+## ⚠️ Known Limitations
+- **Limited Scope**: Covers only 5 HDFC Mutual Fund schemes.
+- **Static Data**: Information is based on documents collected in Feb 2026; real-time NAV/performance is not available.
+- **Official Sources Only**: Does not use third-party analysis or news.
+- **No Advice**: strictly prohibits investment advice, portfolio reviews, or forward-looking statements.
+- **Context Window**: Long answers may be truncated; designed for short, factual responses.
+
 
 ---
 

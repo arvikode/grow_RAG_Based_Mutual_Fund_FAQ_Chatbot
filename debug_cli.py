@@ -17,7 +17,7 @@ def debug_query():
         retriever = Retriever(k=5)
         generator = get_answer_generator(k=5)
         
-        question = "What is the expense ratio of HDFC Flexi Cap Fund?"
+        question = "What is the exit load of HDFC Flexi Cap Fund?"
         print(f"\nQuestion: {question}\n")
         
         # 1. Check Retrieval
