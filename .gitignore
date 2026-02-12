@@ -33,7 +33,7 @@ ENV/
 .streamlit/secrets.toml
 
 # Vector Database
-faiss_index/
+
 chromadb/
 chroma_db/
 
